@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:pattern_provider/models/post_model.dart';
+import 'package:pattern_provider/pages/add_page.dart';
+import 'package:pattern_provider/pages/update_page.dart';
 import 'package:pattern_provider/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -54,6 +56,13 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.white,
         onPressed: (){
           //////
+          Navigator.pushNamed(context, AddPage.id).then(
+                (value) {
+              if (value == 'done') {
+                viewModel.apiPostList();
+              }
+            },
+          );
         },
         child: Icon(Icons.add),
       ),
@@ -76,6 +85,29 @@ class _HomePageState extends State<HomePage> {
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: "Delete",
+          ),
+        ],
+      ),
+      startActionPane: ActionPane(
+        extentRatio: 0.3,
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            label: 'Update',
+            backgroundColor: Colors.indigo,
+            icon: Icons.edit,
+            onPressed: (_) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => UpdatePage(
+                        post: post,
+                      ))).then((value) {
+                if (value == 'done') {
+                  viewModel.apiPostList();
+                }
+              });
+            },
           ),
         ],
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pattern_provider/pages/add_page.dart';
+import 'package:pattern_provider/pages/update_page.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -16,6 +18,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePage(),
+      routes: {
+        HomePage.id: (context) => HomePage(),
+        AddPage.id: (context) => AddPage(),
+        UpdatePage.id: (context) => UpdatePage(),
+      },
     );
   }
 }

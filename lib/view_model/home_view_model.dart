@@ -3,11 +3,11 @@ import 'package:pattern_provider/models/post_model.dart';
 import 'package:pattern_provider/services/http_service.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  bool isloading = false;
 
   bool isLoading = false;
   List<Post> items = [];
 
+  //////// olib kelmoq
   void apiPostList() async {
     isLoading = true;
     notifyListeners();
@@ -23,6 +23,8 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+
+  ///// delete post
   Future<bool> apiPostDelete(Post post) async {
     isLoading = true;
     notifyListeners();
@@ -37,3 +39,6 @@ class HomeViewModel extends ChangeNotifier {
     return response != null;
   }
 }
+
+
+
